@@ -29,6 +29,7 @@ public class Partition {
     }
 
     public int append(String key, String message)  {
+        return 0;
         //Assignment: Implement append;
 //        long currentPos = writer.getCurrentPosition();
 //        try {
