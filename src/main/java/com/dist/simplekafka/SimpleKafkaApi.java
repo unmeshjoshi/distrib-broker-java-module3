@@ -4,7 +4,6 @@ import com.dist.common.Config;
 import com.dist.common.JsonSerDes;
 import com.dist.net.RequestKeys;
 import com.dist.net.RequestOrResponse;
-import com.fasterxml.jackson.core.TreeNode;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -68,10 +67,11 @@ class ConsumeResponse {
 class ConsumeRequest {
     private final TopicAndPartition topicAndPartition;
     private final String isolation;
-    private final int offset;
+    private final long offset;
     private final int replicaId;
 
-    public ConsumeRequest(TopicAndPartition topicAndPartition, String isolation, int offset, int replicaId) {
+    public ConsumeRequest(TopicAndPartition topicAndPartition,
+                          String isolation, long offset, int replicaId) {
         this.topicAndPartition = topicAndPartition;
         this.isolation = isolation;
         this.offset = offset;
@@ -79,7 +79,7 @@ class ConsumeRequest {
     }
 
     public ConsumeRequest(TopicAndPartition topicAndPartition) {
-        this(topicAndPartition, FetchHighWatermark.toString(), 0, -1);
+        this(topicAndPartition, FetchHighWatermark.toString(), 1, -1);
     }
 
     private ConsumeRequest() {
@@ -94,7 +94,7 @@ class ConsumeRequest {
         return isolation;
     }
 
-    public int getOffset() {
+    public long getOffset() {
         return offset;
     }
 
@@ -223,7 +223,6 @@ public class SimpleKafkaApi {
                         produceRequest.getKey(), produceRequest.getMessage());
 //                waitUntilTrue(() -> offset == partition.highWatermark(),
 //                        "Waiting for message to replicate", 1000, 100);
-// TODO: Implementing quorum handling.
                 return new RequestOrResponse(RequestKeys.ProduceKey, JsonSerDes.serialize(new ProduceResponse(offset)), request.getCorrelationId());
             }
             case RequestKeys.FetchKey: {
@@ -235,13 +234,14 @@ public class SimpleKafkaApi {
                 if (isRequestFromReplica(consumeRequest)) {
                     isolation = FetchLogEnd;
                 }
-                List<Partition.Row> rows = (partition == null) ? new ArrayList<>() : partition.read(consumeRequest.getOffset(), consumeRequest.getReplicaId(), isolation);
+                List<Log.Message> rows = (partition == null) ? new ArrayList<>() :
+                        partition.read(consumeRequest.getOffset(), consumeRequest.getReplicaId(), isolation);
                 if (isRequestFromReplica(consumeRequest) && partition != null) {
                     partition.updateLastReadOffsetAndHighWaterMark(consumeRequest.getReplicaId(), consumeRequest.getOffset());
                 }
                 Map<String, String> result = new HashMap<>();
-                for (Partition.Row row : rows) {
-                    result.put(row.getKey(), row.getValue());
+                for (Log.Message row : rows) {
+                    result.put(new String(row.key), new String(row.value));
                 }
                 ConsumeResponse consumeResponse = new ConsumeResponse(result);
                 return new RequestOrResponse(RequestKeys.FetchKey, JsonSerDes.serialize(consumeResponse), request.getCorrelationId());
@@ -259,13 +259,11 @@ public class SimpleKafkaApi {
             Broker leader =
                     leaderAndReplicas.partitionStateInfo().getLeaderBroker();
 
-//            Assignment: Make leader or Follower
-//
-//            if (leader.id() == config.getBrokerId()) {
-//                replicaManager.makeLeader(topicAndPartition);
-//            } else {
-//                replicaManager.makeFollower(topicAndPartition, leader);
-//            }
+            if (leader.id() == config.getBrokerId()) {
+                replicaManager.makeLeader(topicAndPartition);
+            } else {
+                replicaManager.makeFollower(topicAndPartition, leader);
+            }
         }
     }
 

@@ -27,21 +27,20 @@ public class SimpleProducer {
     }
 
     public long produce(String topic, String key, String message) throws IOException {
-        return 0;
         //Assignment: Implement Producer
 
-//        Map<TopicAndPartition, PartitionInfo> topicPartitions = fetchTopicMetadata(topic);
-//        int partitionId = partitionFor(key, topicPartitions.size());
-//        Broker leaderBroker = leaderFor(topic, partitionId, topicPartitions);
-//        ProduceRequest produceRequest = new ProduceRequest(new TopicAndPartition(topic, partitionId), key, message);
-//        RequestOrResponse producerRequest = new RequestOrResponse(RequestKeys.ProduceKey, JsonSerDes.serialize(produceRequest), correlationId.incrementAndGet());
-//        RequestOrResponse produceResponse =
-//                socketClient.sendReceiveTcp(producerRequest,
-//                        InetAddressAndPort.create(leaderBroker.host(), leaderBroker.port()));
-//        ProduceResponse response = JsonSerDes.deserialize(produceResponse.getMessageBodyJson(), ProduceResponse.class);
-//
-//        logger.info(String.format("Produced message %s -> %s on leader broker %s. Message offset is %d", key, message, leaderBroker, response.getOffset()));
-//        return response.getOffset();
+        Map<TopicAndPartition, PartitionInfo> topicPartitions = fetchTopicMetadata(topic);
+        int partitionId = partitionFor(key, topicPartitions.size());
+        Broker leaderBroker = leaderFor(topic, partitionId, topicPartitions);
+        ProduceRequest produceRequest = new ProduceRequest(new TopicAndPartition(topic, partitionId), key, message);
+        RequestOrResponse producerRequest = new RequestOrResponse(RequestKeys.ProduceKey, JsonSerDes.serialize(produceRequest), correlationId.incrementAndGet());
+        RequestOrResponse produceResponse =
+                socketClient.sendReceiveTcp(producerRequest,
+                        InetAddressAndPort.create(leaderBroker.host(), leaderBroker.port()));
+        ProduceResponse response = JsonSerDes.deserialize(produceResponse.getMessageBodyJson(), ProduceResponse.class);
+
+        logger.info(String.format("Produced message %s -> %s on leader broker %s. Message offset is %d", key, message, leaderBroker, response.getOffset()));
+        return response.getOffset();
     }
 
     private Map<TopicAndPartition, PartitionInfo> fetchTopicMetadata(String topic) throws IOException {

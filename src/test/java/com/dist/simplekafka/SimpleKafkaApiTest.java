@@ -289,7 +289,7 @@ public class SimpleKafkaApiTest {
 
         ConsumeRequest consumeRequest =
                 new ConsumeRequest(new TopicAndPartition("topic1", 0),
-                        FetchIsolation.FetchLogEnd.toString(), 0, 2);
+                        FetchIsolation.FetchLogEnd.toString(), 1, 2);
         RequestOrResponse request = new RequestOrResponse(RequestKeys.FetchKey, JsonSerDes.serialize(consumeRequest), 1);
         RequestOrResponse consumeResponse = simpleKafkaApi.handle(request);
         ConsumeResponse response = JsonSerDes.deserialize(consumeResponse.getMessageBodyJson(), ConsumeResponse.class);

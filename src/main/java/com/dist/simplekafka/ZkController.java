@@ -99,23 +99,24 @@ public class ZkController {
                 leaderAndReplicas);
         //Assignment send leader follower information to individual brokers.
 
-        //sendLeaderAndReplicaRequestToAllLeadersAndFollowersForGivenPartition(leaderAndReplicas, partitionReplicas);
+        sendLeaderAndReplicaRequestToAllLeadersAndFollowersForGivenPartition(leaderAndReplicas, partitionReplicas);
 
         //Assignment send all the metadata information to individual brokers.
-        //sendUpdateMetadataRequestToAllLiveBrokers(leaderAndReplicas);
+        sendUpdateMetadataRequestToAllLiveBrokers(leaderAndReplicas);
     }
 
+    //[0=>{1,2,3}, 1=>{2,3,1}]
+    //[0=>{leader=1, 2,3}, 1=>{leader=2, 3,1]}
     private List<LeaderAndReplicas> selectLeaderAndFollowerBrokersForPartitions(String topicName, List<PartitionReplicas> partitionReplicas) {
         //Assignment assign leader and follower to partitions.
-        return Collections.emptyList();
-//        return partitionReplicas.stream().map(p -> {
-//            int leaderBrokerId = p.brokerIds().get(0); //mark first one as
-//            // broker.
-//            List<Broker> replicaBrokers = p.brokerIds().stream().map(this::getBroker).collect(Collectors.toList());
-//            return new LeaderAndReplicas(new TopicAndPartition(topicName,
-//                    p.getPartitionId()), new PartitionInfo(leaderBrokerId,
-//                    replicaBrokers));
-//        }).collect(Collectors.toList());
+        return partitionReplicas.stream().map(p -> {
+            int leaderBrokerId = p.brokerIds().get(0); //mark first one as
+            // broker.
+            List<Broker> replicaBrokers = p.brokerIds().stream().map(this::getBroker).collect(Collectors.toList());
+            return new LeaderAndReplicas(new TopicAndPartition(topicName,
+                    p.getPartitionId()), new PartitionInfo(leaderBrokerId,
+                    replicaBrokers));
+        }).collect(Collectors.toList());
     }
 
     private Broker getBroker(int brokerId) {

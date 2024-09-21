@@ -41,9 +41,13 @@ public class ZkControllerTest extends ZookeeperTestHarness {
         zkController2.elect();
         zkController3.elect();
 
+
+
         assertEquals(1, zkController1.getCurrentLeaderId());
         assertEquals(1, zkController2.getCurrentLeaderId());
         assertEquals(1, zkController3.getCurrentLeaderId());
+
+
     }
     @Test
     public void shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition() throws Exception {

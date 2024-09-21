@@ -22,6 +22,7 @@ public class ProducerConsumerTest extends ZookeeperTestHarness {
         broker1.startup();
         broker2.startup();
         broker3.startup();
+        int noOfBrokers = 3;
 
         TestUtils.waitUntilTrue(()-> {
             return broker1.controller.getCurrentLiveBrokerIds().size() == 3;
@@ -34,8 +35,10 @@ public class ProducerConsumerTest extends ZookeeperTestHarness {
         createTopicCommand.createTopic("topic1", 2, 3);
 
         TestUtils.waitUntilTrue(() -> {
-            return liveBrokersIn(broker1) == 3 && liveBrokersIn(broker2) == 3 && liveBrokersIn(broker3) == 3;
+            return liveBrokersIn(broker1) == noOfBrokers && liveBrokersIn(broker2) == noOfBrokers && liveBrokersIn(broker3) == noOfBrokers;
         }, "waiting till topic metadata is propogated to all the servers");
+
+        //cluster is ready.
 
         InetAddressAndPort bootstrapBroker = InetAddressAndPort.create(broker2.getConfig().getHostName(), broker2.getConfig().getPort());
         SimpleProducer simpleProducer = new SimpleProducer(bootstrapBroker);

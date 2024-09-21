@@ -17,7 +17,7 @@ public class TopicChangeHandler implements IZkChildListener {
         this.controller = controller;
     }
 
-    @Override
+    @Override  //topic/id/topic1     /topic/id          ["topic1", "topic2]
     public void handleChildChange(String parentPath, List<String> currentChildren) {
         Set<String> newTopics = getNewlyAddedTopics(currentChildren);
 
@@ -28,6 +28,7 @@ public class TopicChangeHandler implements IZkChildListener {
 
         newTopics.forEach(topicName -> {
             List<PartitionReplicas> replicas = zookeeperClient.getPartitionAssignmentsFor(topicName);
+//            [{0, [1,2,3]}, {1, [2,3,1]}  0 => 1 leader , 1 => 2
             controller.handleNewTopic(topicName, replicas);
         });
     }

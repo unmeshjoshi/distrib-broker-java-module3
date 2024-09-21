@@ -31,30 +31,27 @@ public class SimpleConsumer {
 
 
     public Map<String, String> consume(String topic, FetchIsolation fetchIsolation) throws IOException {
-        return Collections.emptyMap();
-
         //Assignment: Implement Consumer.
-
-//        Map<String, String> result = new HashMap<>();
-//        Map<TopicAndPartition, PartitionInfo> topicMetadata = fetchTopicMetadata(topic);
-//        for (Map.Entry<TopicAndPartition, PartitionInfo> tp : topicMetadata.entrySet()) {
-//            TopicAndPartition topicPartition = tp.getKey();
-//            PartitionInfo partitionInfo = tp.getValue();
-//            Broker leader = partitionInfo.getLeaderBroker();
-//            RequestOrResponse request = new RequestOrResponse(RequestKeys.FetchKey,
-//                    JsonSerDes.serialize(new ConsumeRequest(topicPartition,
-//                            fetchIsolation.toString(), 0, -1)),
-//                    correlationId.getAndIncrement());
-//            RequestOrResponse response = socketClient.sendReceiveTcp(request,
-//                    InetAddressAndPort.create(leader.host(), leader.port()));
-//            ConsumeResponse consumeResponse = JsonSerDes.deserialize(response.getMessageBodyJson(), ConsumeResponse.class);
-//            for (Map.Entry<String, String> m : consumeResponse.getMessages().entrySet()) {
-//                if (!m.getKey().equals("producer1")) {
-//                    result.put(m.getKey(), m.getValue());
-//                }
-//            }
-//        }
-//        return result;
+        Map<String, String> result = new HashMap<>();
+        Map<TopicAndPartition, PartitionInfo> topicMetadata = fetchTopicMetadata(topic);
+        for (Map.Entry<TopicAndPartition, PartitionInfo> tp : topicMetadata.entrySet()) {
+            TopicAndPartition topicPartition = tp.getKey();
+            PartitionInfo partitionInfo = tp.getValue();
+            Broker leader = partitionInfo.getLeaderBroker();
+            RequestOrResponse request = new RequestOrResponse(RequestKeys.FetchKey,
+                    JsonSerDes.serialize(new ConsumeRequest(topicPartition,
+                            fetchIsolation.toString(), 1, -1)),
+                    correlationId.getAndIncrement());
+            RequestOrResponse response = socketClient.sendReceiveTcp(request,
+                    InetAddressAndPort.create(leader.host(), leader.port()));
+            ConsumeResponse consumeResponse = JsonSerDes.deserialize(response.getMessageBodyJson(), ConsumeResponse.class);
+            for (Map.Entry<String, String> m : consumeResponse.getMessages().entrySet()) {
+                if (!m.getKey().equals("producer1")) {
+                    result.put(m.getKey(), m.getValue());
+                }
+            }
+        }
+        return result;
     }
 
     private Map<TopicAndPartition, PartitionInfo> fetchTopicMetadata(String topic) throws IOException {

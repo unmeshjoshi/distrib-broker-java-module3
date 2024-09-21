@@ -84,9 +84,10 @@ public class SequenceFile {
             int length = buffer.length;
             file.writeInt(length);
             file.write(buffer, 0, length);
-            file.getFD().sync();
+            file.getFD().sync(); //This is tricky... kafka or others keep
+            // this optional and only sync periodically.
             this.lastWritePosition = file.getFilePointer();
-            keyIndexes.put(key, filePosition);
+
             int currentOffset = offset.incrementAndGet();
             offsetIndexes.put((long) currentOffset, filePosition);
             System.out.println("storing offset " + currentOffset + " for key " + key + " in " + config.getBrokerId());
