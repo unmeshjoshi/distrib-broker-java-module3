@@ -107,7 +107,6 @@ public class Partition {
     }
 
 
-
     private int getFetcherId(TopicAndPartition topicAndPartition) {
         return (topicAndPartition.topic().hashCode() + 31 * topicAndPartition.partition()); // % numFetchers
     }
@@ -124,6 +123,36 @@ public class Partition {
 
     private Map<Integer, Long> remoteReplicasMap = new HashMap<>();
 
+    /**
+     * Updates the last read offset for a replica and potentially updates the high watermark.
+     * The high watermark represents the offset up to which all replicas have successfully replicated messages.
+     * <p>
+     * Log structure visualization:
+     * ```
+     * Offset: 0     1     2     3     4     5     6     7     8     9
+     * [M0]  [M1]  [M2]  [M3]  [M4]  [M5]  [M6]  [M7]  [M8]  [M9]
+     * |                   |                             |
+     * |                   |                             |
+     * First Offset      High Watermark                  Log End Offset
+     * ↑                                ↑
+     * Consumers can          Producer writes new messages
+     * read up to here           at log end offset
+     * <p>
+     * Replica progress example:
+     * Replica 1: Offset 6 (Leader)
+     * Replica 2: Offset 4
+     * Replica 3: Offset 4
+     * → High Watermark = 4 (minimum of all replicas)
+     * ```
+     * <p>
+     * This method is crucial for:
+     * 1. Tracking replica progress: Keeps track of how far each replica has progressed in reading/replicating messages
+     * 2. Consumer visibility: Only messages up to the high watermark are visible to consumers
+     * 3. Ensuring consistency: Helps maintain the consistency guarantee that a message is only readable after it's replicated
+     *
+     * @param replicaId The ID of the replica reporting its progress
+     * @param offset    The last offset that this replica has successfully read/replicated
+     */
     public void updateLastReadOffsetAndHighWaterMark(int replicaId, long offset) {
         lock.lock();
         try {

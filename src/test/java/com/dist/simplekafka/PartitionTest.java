@@ -82,6 +82,116 @@ public class PartitionTest  {
         assertEquals("message3", new String(messages.get(1).value));
     }
 
+    /**
+     * Test scenario:
+     * 1. Append messages M0-M5 to the log
+     * 2. Update replica offsets to simulate replication:
+     *    - Replica 1 (Leader): Offset 5
+     *    - Replica 2: Offset 3
+     *    - Replica 3: Offset 2
+     * 3. High watermark should be 2 (minimum of all replicas)
+     * 4. Verify reads respect high watermark isolation
+     */
+    @Test
+    public void testReadRespectsHighWatermark() throws IOException {
+        Config config1 = testConfig();
+        Partition partition = new Partition(config1, new TopicAndPartition("topic1", 0));
+        // Append 6 messages
+        for (int i = 0; i < 6; i++) {
+            partition.append("key" + i, "message" + i);
+        }
+
+        // Simulate replica progress
+        partition.updateLastReadOffsetAndHighWaterMark(2, 3); // Follower 1
+        partition.updateLastReadOffsetAndHighWaterMark(3, 2); // Follower 2
+
+        // Read with high watermark isolation
+        List<Log.Message> messages = partition.read(1, -1, FetchIsolation.FetchHighWatermark);
+
+        // Should only get messages up to high watermark (offset 2)
+        assertEquals("Should only read messages up to high watermark",3, messages.size());
+
+        // Verify message contents
+        for (int i = 0; i < messages.size(); i++) {
+            Log.Message message = messages.get(i);
+            assertEquals("Key should match", "key" + i, new String(message.key));
+            assertEquals("Message should match", "message" + i, new String(message.value));
+        }
+    }
+
+    /**
+     * Test scenario:
+     * Same setup as above, but read with FetchLogEnd isolation
+     * Should return all messages regardless of high watermark
+     */
+    @Test
+    public void testReadWithLogEndIsolation() throws IOException {
+        Config config1 = testConfig();
+        Partition partition = new Partition(config1, new TopicAndPartition("topic1", 0));
+        // Append 6 messages
+        for (int i = 0; i < 6; i++) {
+            partition.append("key" + i, "message" + i);
+        }
+
+        // Simulate replica progress
+        partition.updateLastReadOffsetAndHighWaterMark(1, 5);
+        partition.updateLastReadOffsetAndHighWaterMark(2, 3);
+        partition.updateLastReadOffsetAndHighWaterMark(3, 2);
+
+        // Read with log end isolation
+        List<Log.Message> messages = partition.read(1, -1, FetchIsolation.FetchLogEnd);
+
+        // Should get all messages
+        assertEquals("Should read all messages with FetchLogEnd", 6, messages.size());
+    }
+
+    /**
+     * Test scenario:
+     * Verify that reads starting from an offset beyond high watermark
+     * return empty list
+     */
+    @Test
+    public void testReadBeyondHighWatermark() throws IOException {
+        Config config1 = testConfig();
+        Partition partition = new Partition(config1, new TopicAndPartition("topic1", 0));
+        // Append 6 messages
+        for (int i = 0; i < 6; i++) {
+            partition.append("key" + i, "message" + i);
+        }
+
+        // Set high watermark to 2
+        partition.updateLastReadOffsetAndHighWaterMark(1, 5);
+        partition.updateLastReadOffsetAndHighWaterMark(2, 3);
+        partition.updateLastReadOffsetAndHighWaterMark(3, 2);
+
+        // Try to read from offset 3 (beyond high watermark)
+        List<Log.Message> messages = partition.read(3, -1, FetchIsolation.FetchHighWatermark);
+
+        // Should get empty list
+        assertTrue("Reading beyond high watermark should return empty list", messages.isEmpty());
+    }
+
+    /**
+     * Test scenario:
+     * Verify that replica reads update the replica's offset correctly
+     */
+    @Test
+    public void testReplicaReadUpdatesOffset() throws IOException {
+        Config config1 = testConfig();
+        Partition partition = new Partition(config1, new TopicAndPartition("topic1", 0));
+        // Append 3 messages
+        for (int i = 0; i < 3; i++) {
+            partition.append("key" + i, "message" + i);
+        }
+
+        // Simulate replica read
+        int replicaId = 2;
+        partition.read(1, replicaId, FetchIsolation.FetchLogEnd);
+
+        // High watermark should be updated for this replica
+        assertEquals( "High watermark should be updated after replica read", 2, partition.highWatermark());
+    }
+
 
     protected Config testConfig() {
         return new Config(1, new Networks().hostname(),

@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6ab543-9179-4abf-a2e1-05bbd977a760" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/zigbrains.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SequenceFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/TopicChangeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/TopicChangeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +36,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.PartitionTest.executor": "Run",
+    "Gradle.PartitionTest.testReadRespectsHighWatermark.executor": "Run",
     "Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -64,7 +54,55 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.PartitionTest.testReadRespectsHighWatermark">
+    <configuration name="PartitionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.dist.simplekafka.PartitionTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="PartitionTest.testReadRespectsHighWatermark" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.dist.simplekafka.PartitionTest.testReadRespectsHighWatermark&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="ProducerConsumerTest.shouldProduceAndConsumeMessages" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -91,6 +129,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PartitionTest.testReadRespectsHighWatermark" />
+        <item itemvalue="Gradle.PartitionTest" />
         <item itemvalue="Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages" />
       </list>
     </recent_temporary>
@@ -111,7 +151,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734754275676</updated>
-      <workItem from="1734754276716" duration="1829000" />
+      <workItem from="1734754276716" duration="2803000" />
     </task>
     <servers />
   </component>
@@ -120,5 +160,21 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

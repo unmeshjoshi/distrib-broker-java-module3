@@ -69,7 +69,6 @@ public class Log {
 
             //Complete writing to file.
             //we need to write key and value to the file.
-
             offsetIndex.put(offset, position);
             return offset;
         } finally {
