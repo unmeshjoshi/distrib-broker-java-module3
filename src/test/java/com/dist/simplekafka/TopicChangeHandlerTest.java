@@ -28,13 +28,10 @@ public class TopicChangeHandlerTest extends ZookeeperTestHarness {
         // 1. Becomes controller by creating znode
         // 2. Loads broker metadata from ZK
         // 3. Subscribes to ZK changes
-        // Without this, controller wouldn't know broker addresses!
-
-        // Setup TopicChangeHandler and subscribe to topic changes
-        // Handler will notify controller of new topics, and controller
-        // uses its broker metadata to send requests to correct addresses
-        TopicChangeHandler handler = new TopicChangeHandler(zookeeperClient, controller);
-        zookeeperClient.subscribeTopicChangeListener(handler);
+        // 4. Controller is subscribing to Topic changes. So it will get invoked
+        // when a new topic is created.
+        // Controller is also subscribing to broker changes to get broker ip address and port to
+        // communicate with.
 
         // Create a new topic using admin utility
         // This will:
@@ -43,12 +40,6 @@ public class TopicChangeHandlerTest extends ZookeeperTestHarness {
         // 3. Controller uses broker metadata to send requests
         CreateTopicCommand adminUtil = new CreateTopicCommand(zookeeperClient, new ReplicaAssigner());
         adminUtil.createTopic("topic1", 2, 3);
-
-        // Verify: Wait until handler detects the new topic
-        TestUtils.waitUntilTrue(() -> {
-                    return 1 == handler.getAllTopics().size();
-                },
-                "Waiting for topic creation to be detected");
 
         // Verify: Wait until all expected messages are sent to correct broker addresses
         // This only works because controller loaded broker metadata during elect()

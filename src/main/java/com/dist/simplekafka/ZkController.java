@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ZkController {
     private final ZookeeperClient zookeeperClient;
     private final int brokerId;
-    private final BrokerNetworkHandler socketServer;
+    private final BrokerNetworkHandler brokerClient;
     private final AtomicInteger correlationId = new AtomicInteger(0);
     private Set<Broker> liveBrokers = new HashSet<>();
     private int currentLeader = -1;
@@ -20,7 +20,7 @@ public class ZkController {
     public ZkController(ZookeeperClient zookeeperClient, int brokerId, BrokerNetworkHandler socketServer) {
         this.zookeeperClient = zookeeperClient;
         this.brokerId = brokerId;
-        this.socketServer = socketServer;
+        this.brokerClient = socketServer;
     }
 
     public void startup() {
@@ -167,7 +167,7 @@ public class ZkController {
         for (Broker broker : liveBrokers) {
             UpdateMetadataRequest updateMetadataRequest = new UpdateMetadataRequest(new ArrayList<>(liveBrokers), leaderAndReplicas);
             RequestOrResponse request = new RequestOrResponse(RequestKeys.UpdateMetadataKey, JsonSerDes.serialize(updateMetadataRequest), correlationId.incrementAndGet());
-            socketServer.sendReceiveTcp(request, InetAddressAndPort.create(broker.host(), broker.port()));
+            brokerClient.sendReceiveTcp(request, InetAddressAndPort.create(broker.host(), broker.port()));
         }
     }
 
@@ -193,7 +193,7 @@ public class ZkController {
             List<LeaderAndReplicas> leaderAndReplicasList = entry.getValue();
             LeaderAndReplicaRequest leaderAndReplicaRequest = new LeaderAndReplicaRequest(leaderAndReplicasList);
             RequestOrResponse request = new RequestOrResponse(RequestKeys.LeaderAndIsrKey, JsonSerDes.serialize(leaderAndReplicaRequest), correlationId.getAndIncrement());
-            socketServer.sendReceiveTcp(request, InetAddressAndPort.create(broker.host(), broker.port()));
+            brokerClient.sendReceiveTcp(request, InetAddressAndPort.create(broker.host(), broker.port()));
         }
     }
 
