@@ -21,16 +21,19 @@ public class TopicChangeHandler implements IZkChildListener {
     public void handleChildChange(String parentPath, List<String> currentChildren) {
         Set<String> newTopics = getNewlyAddedTopics(currentChildren);
 
-//        getDeletedTopics(currentChildren); //not handling deleted topics as
+        //Assignment connect controller handling of new topic.
+        //
+
+        //        getDeletedTopics(currentChildren); //not handling deleted topics as
 //        of now.
 
-        allTopics = new HashSet<>(currentChildren);
-
-        newTopics.forEach(topicName -> {
-            List<PartitionReplicas> replicas = zookeeperClient.getPartitionAssignmentsFor(topicName);
-//            [{0, [1,2,3]}, {1, [2,3,1]}  0 => 1 leader , 1 => 2
-            controller.handleNewTopic(topicName, replicas);
-        });
+//        allTopics = new HashSet<>(currentChildren);
+//
+//        newTopics.forEach(topicName -> {
+//            List<PartitionReplicas> replicas = zookeeperClient.getPartitionAssignmentsFor(topicName);
+////            [{0, [1,2,3]}, {1, [2,3,1]}  0 => 1 leader , 1 => 2
+//            controller.handleNewTopic(topicName, replicas);
+//        });
     }
 
     private void getDeletedTopics(List<String> currentChildren) {

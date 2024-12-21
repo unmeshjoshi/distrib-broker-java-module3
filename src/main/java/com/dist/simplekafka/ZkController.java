@@ -93,6 +93,17 @@ public class ZkController {
         zookeeperClient.subscribeBrokerChangeListener(new BrokerChangeListener(this));
     }
 
+    /**
+     * Handles the creation of a new topic by:
+     * 1. Selecting leaders and followers for each partition
+     * 2. Persisting the leader/follower information to ZooKeeper
+     * 3. Notifying relevant brokers about their leader/follower roles
+     * 4. Updating all brokers with the new metadata
+     *
+     * @param topicName         Name of the new topic being created
+     * @param partitionReplicas List of partition assignments with their replica brokers
+     */
+
     public void handleNewTopic(String topicName, List<PartitionReplicas> partitionReplicas) {
         List<LeaderAndReplicas> leaderAndReplicas = selectLeaderAndFollowerBrokersForPartitions(topicName, partitionReplicas);
         zookeeperClient.setPartitionLeaderForTopic(topicName,
@@ -105,8 +116,36 @@ public class ZkController {
         sendUpdateMetadataRequestToAllLiveBrokers(leaderAndReplicas);
     }
 
-    //[0=>{1,2,3}, 1=>{2,3,1}]
-    //[0=>{leader=1, 2,3}, 1=>{leader=2, 3,1]}
+    /**
+     * Assigns leader and follower brokers for each partition of a topic.
+     * <p>
+     * The partitionReplicas input contains broker assignments that were already
+     * carefully determined during partition assignment, considering:
+     * - Even distribution of partitions across brokers
+     * - Rack awareness (Not implemented)
+     * - Broker load balancing etc.. (Not implemented)
+     * <p>
+     * Therefore, selecting the first broker from each partition's replica list as leader is valid because:
+     * 1. The replica list order was already optimized during partition assignment
+     * 2. This ensures deterministic leader assignment (same input always yields same leader)
+     * 3. Leaders will be naturally distributed across brokers due to the balanced partition assignment
+     * <p>
+     * Example:
+     * Input partitionReplicas: [
+     * Partition 0 => brokers [1,2,3],
+     * Partition 1 => brokers [2,3,1],
+     * Partition 2 => brokers [3,1,2]
+     * ]
+     * <p>
+     * Results in leaders:
+     * - Partition 0 => Leader: 1, Followers: 2,3
+     * - Partition 1 => Leader: 2, Followers: 3,1
+     * - Partition 2 => Leader: 3, Followers: 1,2
+     *
+     * @param topicName         Name of the topic
+     * @param partitionReplicas List of partition assignments with their replica brokers
+     * @return List of leader and replica assignments for each partition
+     */
     private List<LeaderAndReplicas> selectLeaderAndFollowerBrokersForPartitions(String topicName, List<PartitionReplicas> partitionReplicas) {
         //Assignment assign leader and follower to partitions.
         return partitionReplicas.stream().map(p -> {
@@ -123,6 +162,7 @@ public class ZkController {
         return liveBrokers.stream().filter(b -> b.id() == brokerId).findFirst().orElseThrow();
     }
 
+
     private void sendUpdateMetadataRequestToAllLiveBrokers(List<LeaderAndReplicas> leaderAndReplicas) {
         for (Broker broker : liveBrokers) {
             UpdateMetadataRequest updateMetadataRequest = new UpdateMetadataRequest(new ArrayList<>(liveBrokers), leaderAndReplicas);
@@ -131,6 +171,14 @@ public class ZkController {
         }
     }
 
+    /**
+     * Sends leader and replica assignments to all involved brokers.
+     * Each broker receives information about the partitions where it serves
+     * either as a leader or as a follower.
+     *
+     * @param leaderAndReplicas List of leader and replica assignments
+     * @param partitionReplicas List of partition assignments with their replica brokers
+     */
     public void sendLeaderAndReplicaRequestToAllLeadersAndFollowersForGivenPartition(List<LeaderAndReplicas> leaderAndReplicas, List<PartitionReplicas> partitionReplicas) {
         Map<Broker, List<LeaderAndReplicas>> brokerToLeaderIsrRequest = new HashMap<>();
 
@@ -185,7 +233,6 @@ public class ZkController {
             }
         }
     }
-
 
 
     private void onBrokerRemoved(Broker broker) {

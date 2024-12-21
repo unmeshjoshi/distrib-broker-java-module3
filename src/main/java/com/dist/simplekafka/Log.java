@@ -61,11 +61,15 @@ public class Log {
     }
 
     public long append(byte[] key, byte[] value) throws IOException {
+       //Complete writing to file.
         lock.lock();
         try {
             long position = channel.position();
             long offset = nextOffset.getAndIncrement();
-            writeToFile(key, value);
+
+            //Complete writing to file.
+            //we need to write key and value to the file.
+
             offsetIndex.put(offset, position);
             return offset;
         } finally {

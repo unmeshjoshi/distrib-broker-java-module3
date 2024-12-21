@@ -133,7 +133,7 @@ class ProduceRequest {
     }
 
     public ProduceRequest(TopicAndPartition topicAndPartition, String key, String message) {
-        this(topicAndPartition, key, message,  -1);
+        this(topicAndPartition, key, message, -1);
     }
 
 
@@ -251,6 +251,24 @@ public class SimpleKafkaApi {
         }
     }
 
+    /**
+     * Handles leader and replica assignments received from the controller.
+     * This method is called on each broker when:
+     * 1. A new topic is created
+     * 2. A leader needs to be reassigned (e.g., after broker failure)
+     * 3. Partition reassignment occurs
+     * <p>
+     * The method is currently partially implemented, with core functionality commented out.
+     * When fully implemented, it should:
+     * - Process each partition's leader/replica assignment
+     * - If this broker is the leader, initialize leader state via makeLeader()
+     * - If this broker is a follower, initialize follower state via makeFollower()
+     * <p>
+     * Current implementation only logs the received assignments.
+     * TODO: Uncomment and complete the leader/follower initialization logic
+     *
+     * @param leaderReplicas List of leader and replica assignments to process
+     */
     public void handleLeaderAndReplicas(List<LeaderAndReplicas> leaderReplicas) {
         System.out.println("Handling LeaderAndISR Request in " + config.getBrokerId() + " " + leaderReplicas);
 
@@ -258,12 +276,11 @@ public class SimpleKafkaApi {
             TopicAndPartition topicAndPartition = leaderAndReplicas.topicPartition();
             Broker leader =
                     leaderAndReplicas.partitionStateInfo().getLeaderBroker();
-
-            if (leader.id() == config.getBrokerId()) {
-                replicaManager.makeLeader(topicAndPartition);
-            } else {
-                replicaManager.makeFollower(topicAndPartition, leader);
-            }
+//            if (leader.id() == config.getBrokerId()) {
+//                replicaManager.makeLeader(topicAndPartition);
+//            } else {
+//                replicaManager.makeFollower(topicAndPartition, leader);
+//            }
         }
     }
 
