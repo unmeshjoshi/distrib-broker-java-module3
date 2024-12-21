@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6ab543-9179-4abf-a2e1-05bbd977a760" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeHandlerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/TopicChangeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/TopicChangeHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,9 +45,13 @@
     "Gradle.PartitionTest.executor": "Run",
     "Gradle.PartitionTest.testReadRespectsHighWatermark.executor": "Run",
     "Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages.executor": "Run",
+    "Gradle.TopicChangeHandlerTest.detectNewTopicCreation.executor": "Run",
+    "Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
@@ -54,7 +64,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.PartitionTest.testReadRespectsHighWatermark">
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.dist.simplekafka" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.TopicChangeHandlerTest.detectNewTopicCreation">
     <configuration name="PartitionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -127,8 +145,58 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="TopicChangeHandlerTest.detectNewTopicCreation" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.dist.simplekafka.TopicChangeHandlerTest.detectNewTopicCreation&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.dist.simplekafka.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TopicChangeHandlerTest.detectNewTopicCreation" />
+        <item itemvalue="Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition" />
         <item itemvalue="Gradle.PartitionTest.testReadRespectsHighWatermark" />
         <item itemvalue="Gradle.PartitionTest" />
         <item itemvalue="Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages" />
@@ -151,7 +219,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734754275676</updated>
-      <workItem from="1734754276716" duration="2803000" />
+      <workItem from="1734754276716" duration="8326000" />
     </task>
     <servers />
   </component>
@@ -173,6 +241,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java</url>
           <line>163</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -17,6 +17,10 @@ public class TopicChangeHandler implements IZkChildListener {
         this.controller = controller;
     }
 
+    public Set<String> getAllTopics() {
+        return allTopics;
+    }
+
     @Override  //topic/id/topic1     /topic/id          ["topic1", "topic2]
     public void handleChildChange(String parentPath, List<String> currentChildren) {
         Set<String> newTopics = getNewlyAddedTopics(currentChildren);
@@ -27,13 +31,13 @@ public class TopicChangeHandler implements IZkChildListener {
         //        getDeletedTopics(currentChildren); //not handling deleted topics as
 //        of now.
 
-//        allTopics = new HashSet<>(currentChildren);
-//
-//        newTopics.forEach(topicName -> {
-//            List<PartitionReplicas> replicas = zookeeperClient.getPartitionAssignmentsFor(topicName);
-////            [{0, [1,2,3]}, {1, [2,3,1]}  0 => 1 leader , 1 => 2
-//            controller.handleNewTopic(topicName, replicas);
-//        });
+        allTopics = new HashSet<>(currentChildren);
+
+        newTopics.forEach(topicName -> {
+            List<PartitionReplicas> replicas = zookeeperClient.getPartitionAssignmentsFor(topicName);
+//            [{0, [1,2,3]}, {1, [2,3,1]}  0 => 1 leader , 1 => 2
+            controller.handleNewTopic(topicName, replicas);
+        });
     }
 
     private void getDeletedTopics(List<String> currentChildren) {
