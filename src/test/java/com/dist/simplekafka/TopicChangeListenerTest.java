@@ -2,14 +2,9 @@ package com.dist.simplekafka;
 
 import com.dist.common.TestUtils;
 import com.dist.common.ZookeeperTestHarness;
-import com.dist.net.RequestOrResponse;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
-
-public class TopicChangeHandlerTest extends ZookeeperTestHarness {
+public class TopicChangeListenerTest extends ZookeeperTestHarness {
 
     @Test
     public void detectNewTopicCreation() {

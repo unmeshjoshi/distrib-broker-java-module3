@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6ab543-9179-4abf-a2e1-05bbd977a760" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeListenerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +35,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2qVijB3VkQeeZreLq1lrzOIrI7B" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -43,9 +47,13 @@
   "keyToString": {
     "Gradle.PartitionTest.executor": "Run",
     "Gradle.PartitionTest.testReadRespectsHighWatermark.executor": "Run",
+    "Gradle.ProducerConsumerTest.executor": "Run",
     "Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages.executor": "Run",
+    "Gradle.SimpleKafkaApiTest.executor": "Run",
     "Gradle.TopicChangeHandlerTest.detectNewTopicCreation.executor": "Run",
+    "Gradle.ZkControllerTest.forMultipleNodesOnlyOneBecomesController.executor": "Run",
     "Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition.executor": "Run",
+    "JavaMethodFindUsagesOptions.isSearchForTextOccurrences": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -71,8 +79,8 @@
       <recent name="com.dist.simplekafka" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TopicChangeHandlerTest.detectNewTopicCreation">
-    <configuration name="PartitionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.SimpleKafkaApiTest">
+    <configuration name="ProducerConsumerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -85,7 +93,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.dist.simplekafka.PartitionTest&quot;" />
+            <option value="&quot;com.dist.simplekafka.ProducerConsumerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -96,7 +104,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PartitionTest.testReadRespectsHighWatermark" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SimpleKafkaApiTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -109,31 +117,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.dist.simplekafka.PartitionTest.testReadRespectsHighWatermark&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="ProducerConsumerTest.shouldProduceAndConsumeMessages" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.dist.simplekafka.ProducerConsumerTest.shouldProduceAndConsumeMessages&quot;" />
+            <option value="&quot;com.dist.simplekafka.SimpleKafkaApiTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -158,6 +142,30 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.dist.simplekafka.TopicChangeHandlerTest.detectNewTopicCreation&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ZkControllerTest.forMultipleNodesOnlyOneBecomesController" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.dist.simplekafka.ZkControllerTest.forMultipleNodesOnlyOneBecomesController&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -194,19 +202,19 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SimpleKafkaApiTest" />
+        <item itemvalue="Gradle.ProducerConsumerTest" />
+        <item itemvalue="Gradle.ZkControllerTest.forMultipleNodesOnlyOneBecomesController" />
         <item itemvalue="Gradle.TopicChangeHandlerTest.detectNewTopicCreation" />
         <item itemvalue="Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition" />
-        <item itemvalue="Gradle.PartitionTest.testReadRespectsHighWatermark" />
-        <item itemvalue="Gradle.PartitionTest" />
-        <item itemvalue="Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -219,6 +227,9 @@
       <option name="presentableId" value="Default" />
       <updated>1734754275676</updated>
       <workItem from="1734754276716" duration="9284000" />
+      <workItem from="1743575822672" duration="9584000" />
+      <workItem from="1743667804124" duration="71000" />
+      <workItem from="1743667925003" duration="460000" />
     </task>
     <servers />
   </component>

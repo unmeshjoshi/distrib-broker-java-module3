@@ -110,9 +110,9 @@ public class ZkController {
                 leaderAndReplicas);
         //Assignment send leader follower information to individual brokers.
 
-        sendLeaderAndReplicaRequestToAllLeadersAndFollowersForGivenPartition(leaderAndReplicas, partitionReplicas);
+//        sendLeaderAndReplicaRequestToAllLeadersAndFollowersForGivenPartition(leaderAndReplicas, partitionReplicas);
 
-        //Assignment send all the metadata information to individual brokers.
+//        Assignment send all the metadata information to individual brokers.
 //        sendUpdateMetadataRequestToAllLiveBrokers(leaderAndReplicas);
     }
 

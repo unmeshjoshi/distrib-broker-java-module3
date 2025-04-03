@@ -276,6 +276,8 @@ public class SimpleKafkaApi {
             TopicAndPartition topicAndPartition = leaderAndReplicas.topicPartition();
             Broker leader =
                     leaderAndReplicas.partitionStateInfo().getLeaderBroker();
+//     * TODO: Uncomment and complete the leader/follower initialization logic
+
 //            if (leader.id() == config.getBrokerId()) {
 //                replicaManager.makeLeader(topicAndPartition);
 //            } else {
