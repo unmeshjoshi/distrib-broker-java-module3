@@ -2,7 +2,6 @@ package com.dist.common;
 
 import com.dist.simplekafka.Server;
 import com.dist.simplekafka.ZookeeperClient;
-import org.I0Itec.zkclient.ZkClient;
 import org.junit.After;
 import org.junit.Before;
 
@@ -21,6 +20,15 @@ public class ZookeeperTestHarness {
     protected ZookeeperClient zookeeperClient;
     protected Config config;
 
+    protected static Server newBroker(int brokerId) {
+        Config config = new Config(brokerId, new Networks().hostname(),
+                TestUtils.choosePort(), zkConnectAddress,
+                Arrays.asList(TestUtils.tempDir().getAbsolutePath()));
+
+
+        Server server = Server.create(config);
+        return server;
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -39,16 +47,6 @@ public class ZookeeperTestHarness {
         return new Config(1, new Networks().hostname(),
                 TestUtils.choosePort(), zkConnectAddress,
                 Collections.singletonList(TestUtils.tempDir().getAbsolutePath()));
-    }
-
-    protected static Server newBroker(int brokerId) {
-        Config config = new Config(brokerId, new Networks().hostname(),
-                TestUtils.choosePort(), zkConnectAddress,
-                Arrays.asList(TestUtils.tempDir().getAbsolutePath()));
-
-
-        Server server = Server.create(config);
-        return server;
     }
 
 }

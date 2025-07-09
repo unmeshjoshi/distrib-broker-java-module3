@@ -12,6 +12,10 @@ import static junit.framework.Assert.assertTrue;
 
 public class ZookeeperClientTest extends ZookeeperTestHarness {
 
+    private static Broker randomBroker(int id) {
+        return new Broker(id, "10.10.10.10", new Random().nextInt(10000));
+    }
+
     @Test
     public void registersBroker() {
         Broker broker = new Broker(1, "10.10.10.10", 8000);
@@ -74,7 +78,7 @@ public class ZookeeperClientTest extends ZookeeperTestHarness {
 
         zookeeperClient.registerBroker(new Broker(1, "10.10.10.10", 8000));
 
-        TestUtils.waitUntilTrue(()->{
+        TestUtils.waitUntilTrue(() -> {
             return topicChildren.size() == 1;
         }, "Waiting for getting broker added notification");
 
@@ -129,7 +133,7 @@ public class ZookeeperClientTest extends ZookeeperTestHarness {
                         new TopicAndPartition(topicName, 0),
                         new PartitionInfo(1, Arrays.asList(randomBroker(1),
                                 randomBroker(2), randomBroker(3)
-                ))));
+                        ))));
 
         zookeeperClient.setPartitionLeaderForTopic(topicName, leaderAndReplicas);
 
@@ -141,9 +145,5 @@ public class ZookeeperClientTest extends ZookeeperTestHarness {
         assertEquals(topicName, lar.topicPartition().topic());
         assertEquals(0, lar.topicPartition().partition());
         assertEquals(1, lar.partitionStateInfo().leaderBrokerId());
-    }
-
-    private static Broker randomBroker(int id) {
-        return new Broker(id, "10.10.10.10", new Random().nextInt(10000));
     }
 }

@@ -5,10 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class ReplicaAssignerTest {
@@ -16,7 +15,7 @@ public class ReplicaAssignerTest {
     private List<Integer> brokerList;
 
     @Before
-    public void setUp()  {
+    public void setUp() {
         assigner = new ReplicaAssigner(new Random(42));
         brokerList = List.of(1, 2, 3);
 

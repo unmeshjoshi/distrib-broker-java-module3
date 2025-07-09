@@ -1,12 +1,8 @@
 package com.dist.simplekafka;
 
-import com.dist.common.Config;
-import com.dist.common.Networks;
-import com.dist.common.TestUtils;
 import com.dist.common.ZookeeperTestHarness;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -32,7 +28,6 @@ public class ServerTest extends ZookeeperTestHarness {
         assertTrue(server1.isController());
         assertFalse(server2.isController());
     }
-
 
 
 }

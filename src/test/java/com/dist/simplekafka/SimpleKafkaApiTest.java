@@ -10,10 +10,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SimpleKafkaApiTest {
 
@@ -59,7 +59,7 @@ public class SimpleKafkaApiTest {
                 new LeaderAndReplicas(
                         new TopicAndPartition("topic1", 0),
                         new PartitionInfo(
-                               1,
+                                1,
                                 Arrays.asList(
                                         new Broker(0, "10.10.10.10", 8000),
                                         new Broker(1, "10.10.10.11", 8000)
@@ -69,7 +69,7 @@ public class SimpleKafkaApiTest {
                 new LeaderAndReplicas(
                         new TopicAndPartition("topic1", 1),
                         new PartitionInfo(
-                               1,
+                                1,
                                 Arrays.asList(
                                         new Broker(0, "10.10.10.10", 8000),
                                         new Broker(1, "10.10.10.11", 8000)
@@ -197,7 +197,7 @@ public class SimpleKafkaApiTest {
                 Arrays.asList(new LeaderAndReplicas(
                         new TopicAndPartition("topic1", 0),
                         new PartitionInfo(
-                               1,
+                                1,
                                 Arrays.asList(
                                         new Broker(0, "10.10.10.10", 8000),
                                         new Broker(1, "10.10.10.11", 8000)

@@ -8,7 +8,8 @@ import com.dist.net.RequestOrResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,17 +18,18 @@ import java.util.concurrent.locks.ReentrantLock;
 import static com.dist.simplekafka.FetchIsolation.FetchLogEnd;
 
 public class Partition {
-    Logger logger = LogManager.getLogger(Partition.class);
-
+    private static final String LogFileSuffix = ".log";
     private final Config config;
     private final TopicAndPartition topicAndPartition;
     private final ReentrantLock lock = new ReentrantLock(); //lock for
     // high-watermark updates.
     private final Map<Integer, Long> replicaOffsets = new HashMap<>();
-    private long highWatermark = 0L;
-    private static final String LogFileSuffix = ".log";
     private final File logFile;
     private final Log log;
+    private final Map<BrokerAndFetcherId, ReplicaFetcherThread> fetcherThreadMap = new HashMap<>();
+    Logger logger = LogManager.getLogger(Partition.class);
+    private long highWatermark = 0L;
+    private Map<Integer, Long> remoteReplicasMap = new HashMap<>();
 
     public Partition(Config config, TopicAndPartition topicAndPartition) throws IOException {
         this.config = config;
@@ -85,8 +87,6 @@ public class Partition {
         return highWatermark;
     }
 
-    private final Map<BrokerAndFetcherId, ReplicaFetcherThread> fetcherThreadMap = new HashMap<>();
-
     public void addFetcher(TopicAndPartition topicAndPartition, long initialOffset, Broker leaderBroker) {
         ReplicaFetcherThread fetcherThread = null;
         BrokerAndFetcherId key = new BrokerAndFetcherId(leaderBroker, getFetcherId(topicAndPartition));
@@ -106,7 +106,6 @@ public class Partition {
                 initialOffset, leaderBroker.id(), key.fetcherId));
     }
 
-
     private int getFetcherId(TopicAndPartition topicAndPartition) {
         return (topicAndPartition.topic().hashCode() + 31 * topicAndPartition.partition()); // % numFetchers
     }
@@ -120,8 +119,6 @@ public class Partition {
                 config
         );
     }
-
-    private Map<Integer, Long> remoteReplicasMap = new HashMap<>();
 
     /**
      * Updates the last read offset for a replica and potentially updates the high watermark.
@@ -171,6 +168,10 @@ public class Partition {
         }
     }
 
+    private long lastOffset() {
+        return log.lastOffset();
+    }
+
     public static class BrokerAndFetcherId {
         private final Broker broker;
         private final int fetcherId;
@@ -181,7 +182,6 @@ public class Partition {
         }
     }
 
-
     class ReplicaFetcherThread extends Thread {
         private static final Logger logger =
                 LogManager.getLogger(ReplicaFetcherThread.class.getName());
@@ -190,12 +190,10 @@ public class Partition {
         private final Broker leaderBroker;
         private final Partition partition;
         private final Config config;
-
-        private List<TopicAndPartition> topicPartitions = new ArrayList<>();
-
         private final AtomicBoolean isRunning = new AtomicBoolean(true);
         private final AtomicInteger correlationId = new AtomicInteger(0);
         private final SocketClient socketClient = new SocketClient();
+        private List<TopicAndPartition> topicPartitions = new ArrayList<>();
 
         public ReplicaFetcherThread(String name, Broker leaderBroker, Partition partition, Config config) {
             this.name = name;
@@ -249,9 +247,5 @@ public class Partition {
             }
             logger.info("Stopped ");
         }
-    }
-
-    private long lastOffset() {
-        return log.lastOffset();
     }
 }

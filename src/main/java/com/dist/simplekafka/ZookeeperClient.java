@@ -68,7 +68,7 @@ final class LeaderAndReplicas {
     private final PartitionInfo partitionStateInfo;
 
     public LeaderAndReplicas(TopicAndPartition topicPartition,
-                      PartitionInfo partitionStateInfo) {
+                             PartitionInfo partitionStateInfo) {
         this.topicPartition = topicPartition;
         this.partitionStateInfo = partitionStateInfo;
     }
@@ -292,13 +292,11 @@ final class Broker {
 }
 
 public class ZookeeperClient { // Assuming ZookeeperClientInterface exists
-    private static final Logger logger = Logger.getLogger(ZookeeperClient.class);
-
     public static final String BrokerTopicsPath = "/brokers/topics";
     public static final String BrokerIdsPath = "/brokers/ids";
     public static final String ControllerPath = "/controller";
     public static final String ReplicaLeaderElectionPath = "/topics/replica/leader";
-
+    private static final Logger logger = Logger.getLogger(ZookeeperClient.class);
     private final ZkClient zkClient;
     private final Config config;
 
@@ -362,6 +360,7 @@ public class ZookeeperClient { // Assuming ZookeeperClientInterface exists
                 new TypeReference<>() {
                 });
     }
+
     public Optional<List<String>> subscribeTopicChangeListener(IZkChildListener listener) {
         List<String> result = zkClient.subscribeChildChanges(BrokerTopicsPath, listener);
         return Optional.ofNullable(result);
@@ -432,10 +431,9 @@ public class ZookeeperClient { // Assuming ZookeeperClientInterface exists
     }
 
 
-
     public void subscribeControllerChangeListener(ZkController controller) {
-       zkClient.subscribeDataChanges(ControllerPath,
-               new ControllerChangeListener(controller));
+        zkClient.subscribeDataChanges(ControllerPath,
+                new ControllerChangeListener(controller));
     }
 
     public void tryCreatingControllerPath(int controllerId) throws ControllerExistsException {
@@ -454,7 +452,8 @@ public class ZookeeperClient { // Assuming ZookeeperClientInterface exists
         Map<String, List<PartitionReplicas>> topicPartitionMap = new HashMap<>();
         for (String topicName : topics) {
             String partitionAssignments = zkClient.readData(getTopicPath(topicName));
-            List<PartitionReplicas> partitionReplicas = JsonSerDes.deserialize(partitionAssignments.getBytes(), new TypeReference<List<PartitionReplicas>>() {});
+            List<PartitionReplicas> partitionReplicas = JsonSerDes.deserialize(partitionAssignments.getBytes(), new TypeReference<List<PartitionReplicas>>() {
+            });
             topicPartitionMap.put(topicName, partitionReplicas);
         }
         return topicPartitionMap;
@@ -472,8 +471,7 @@ public class ZookeeperClient { // Assuming ZookeeperClientInterface exists
         }
 
         @Override
-        public void handleNewSession() throws Exception
-        {
+        public void handleNewSession() throws Exception {
             logger.error("re-registering broker info in ZK for broker " + config.getBrokerId());
             registerSelf();
             logger.info("done re-registering broker");

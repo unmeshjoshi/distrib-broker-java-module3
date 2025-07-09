@@ -38,7 +38,7 @@ public class TopicChangeListenerTest extends ZookeeperTestHarness {
 
         // Verify: Wait until all expected messages are sent to correct broker addresses
         // This only works because controller loaded broker metadata during elect()
-        TestUtils.waitUntilTrue(()->{
+        TestUtils.waitUntilTrue(() -> {
             return stubNetworkHandler.getMessages().size() == 6;
         }, "Waiting for the messages to be detected");
 

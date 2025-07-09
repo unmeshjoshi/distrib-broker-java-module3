@@ -5,7 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6ab543-9179-4abf-a2e1-05bbd977a760" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/common/JsonSerDes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/common/JsonSerDes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/net/InetAddressAndPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/net/InetAddressAndPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/BrokerChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/BrokerChangeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/BrokerNetworkHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/BrokerNetworkHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/CreateTopicCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/CreateTopicCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ReplicaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ReplicaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SocketIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SocketIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZookeeperClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZookeeperClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/common/EmbeddedZookeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/common/EmbeddedZookeeper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/common/Networks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/common/Networks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/common/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/common/TestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/common/ZookeeperTestHarness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/common/ZookeeperTestHarness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/BrokerChangeListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/BrokerChangeListenerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/CreateTopicCommandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/CreateTopicCommandTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ProducerConsumerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ProducerConsumerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ReplicaAssignerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ReplicaAssignerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/SimpleKafkaApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/SimpleKafkaApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeListenerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ZkControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ZkControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ZookeeperClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/ZookeeperClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/log4j2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +50,26 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="distrib-broker-java" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -44,11 +98,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build distrib-broker-java-module3.executor": "Run",
     "Gradle.PartitionTest.executor": "Run",
     "Gradle.PartitionTest.testReadRespectsHighWatermark.executor": "Run",
     "Gradle.ProducerConsumerTest.executor": "Run",
     "Gradle.ProducerConsumerTest.shouldProduceAndConsumeMessages.executor": "Run",
     "Gradle.SimpleKafkaApiTest.executor": "Run",
+    "Gradle.Tests in 'distrib-broker-java'.executor": "Debug",
     "Gradle.TopicChangeHandlerTest.detectNewTopicCreation.executor": "Run",
     "Gradle.ZkControllerTest.forMultipleNodesOnlyOneBecomesController.executor": "Run",
     "Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition.executor": "Run",
@@ -80,7 +136,7 @@
       <recent name="com.dist.simplekafka" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SimpleKafkaApiTest">
+  <component name="RunManager" selected="Gradle.Tests in 'distrib-broker-java'">
     <configuration name="ProducerConsumerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -119,6 +175,28 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.dist.simplekafka.SimpleKafkaApiTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'distrib-broker-java'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -177,37 +255,13 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.dist.simplekafka.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Tests in 'distrib-broker-java'" />
         <item itemvalue="Gradle.SimpleKafkaApiTest" />
         <item itemvalue="Gradle.ProducerConsumerTest" />
         <item itemvalue="Gradle.ZkControllerTest.forMultipleNodesOnlyOneBecomesController" />
         <item itemvalue="Gradle.TopicChangeHandlerTest.detectNewTopicCreation" />
-        <item itemvalue="Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition" />
       </list>
     </recent_temporary>
   </component>
@@ -231,7 +285,7 @@
       <workItem from="1743575822672" duration="9584000" />
       <workItem from="1743667804124" duration="71000" />
       <workItem from="1743667925003" duration="460000" />
-      <workItem from="1752058876683" duration="8000" />
+      <workItem from="1752058876683" duration="1319000" />
     </task>
     <servers />
   </component>
@@ -240,26 +294,5 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/dist/simplekafka/PartitionTest.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Partition.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

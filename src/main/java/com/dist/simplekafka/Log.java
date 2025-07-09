@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
@@ -44,24 +46,13 @@ public class Log {
         return nextOffset.get() - 1;
     }
 
-    static class Message {
-        public final byte[] key;
-        public final byte[] value;
-
-        public Message(byte[] key, byte[] value) {
-            this.key = key;
-            this.value = value;
-        }
-
-    }
-
     private FileChannel openChannel(File file) throws IOException {
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
         return randomAccessFile.getChannel();
     }
 
     public long append(byte[] key, byte[] value) throws IOException {
-       //Complete writing to file.
+        //Complete writing to file.
         lock.lock();
         try {
             long position = channel.position();
@@ -75,7 +66,6 @@ public class Log {
             lock.unlock();
         }
     }
-
 
     public Message readSingleMessage(long offset) throws IOException {
         Long filePosition = offsetIndex.get(offset);
@@ -143,5 +133,16 @@ public class Log {
 
     private int sizeInBytes(ByteBuffer buffer) {
         return buffer.limit();
+    }
+
+    static class Message {
+        public final byte[] key;
+        public final byte[] value;
+
+        public Message(byte[] key, byte[] value) {
+            this.key = key;
+            this.value = value;
+        }
+
     }
 }

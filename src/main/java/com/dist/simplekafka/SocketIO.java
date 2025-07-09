@@ -1,9 +1,6 @@
 package com.dist.simplekafka;
 
 import com.dist.common.JsonSerDes;
-import com.dist.net.RequestOrResponse;
-
-import java.net.Socket;
 
 import java.io.*;
 import java.net.Socket;

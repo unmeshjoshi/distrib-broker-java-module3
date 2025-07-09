@@ -8,9 +8,12 @@ import com.dist.net.InetAddressAndPort;
 import com.dist.net.RequestKeys;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 public class ZkControllerTest extends ZookeeperTestHarness {
 
     @Test
@@ -42,13 +45,13 @@ public class ZkControllerTest extends ZookeeperTestHarness {
         zkController3.elect();
 
 
-
         assertEquals(1, zkController1.getCurrentLeaderId());
         assertEquals(1, zkController2.getCurrentLeaderId());
         assertEquals(1, zkController3.getCurrentLeaderId());
 
 
     }
+
     @Test
     public void shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition() throws Exception {
         Config config1 = new Config(1, new Networks().hostname(), TestUtils.choosePort(), zkConnectAddress, List.of(TestUtils.tempDir().getAbsolutePath()));
@@ -114,7 +117,7 @@ public class ZkControllerTest extends ZookeeperTestHarness {
         assertEquals(3, controller.getLiveBrokers().size());
 
         CreateTopicCommand createCommandTest =
-                new CreateTopicCommand(zookeeperClient,new ReplicaAssigner());
+                new CreateTopicCommand(zookeeperClient, new ReplicaAssigner());
         createCommandTest.createTopic("topic1", 2, 3);
 
         TestUtils.waitUntilTrue(() -> networkHandler.getMessages().size() == 6 && networkHandler.getToAddresses().size() == 3,
@@ -133,5 +136,5 @@ public class ZkControllerTest extends ZookeeperTestHarness {
 
         assertEquals(expectedAddresses, networkHandler.getToAddresses());
     }
-    
+
 }

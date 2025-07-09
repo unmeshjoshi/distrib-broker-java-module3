@@ -10,10 +10,9 @@ import java.util.Map;
 public class Server {
     private static final Logger logger = LogManager.getLogger(Server.class);
     private static SimpleKafkaApi kafkaApis;
-
+    final ZkController controller;
     private final Config config;
     private final ZookeeperClient zookeeperClient;
-    final ZkController controller;
     private final BrokerNetworkHandler socketServer;
 
     public Server(Config config, ZookeeperClient zookeeperClient, ZkController controller, BrokerNetworkHandler brokerNetworkHandler) {

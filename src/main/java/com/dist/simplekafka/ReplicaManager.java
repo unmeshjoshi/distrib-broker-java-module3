@@ -52,7 +52,7 @@ public class ReplicaManager {
                 allPartitions.put(topicAndPartition, partition);
             }
             return partition;
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
 
         } finally {

@@ -22,12 +22,12 @@ class TopicMetadataRequest {
         this.topicName = topicName;
     }
 
-    public String getTopicName() {
-        return topicName;
-    }
-
     private TopicMetadataRequest() {
         this("");
+    }
+
+    public String getTopicName() {
+        return topicName;
     }
 }
 
@@ -38,13 +38,12 @@ class TopicMetadataResponse {
         this.topicPartitions = topicPartitions;
     }
 
-    public Map<TopicAndPartition, PartitionInfo> getTopicPartitions() {
-        return topicPartitions;
-    }
-
-
     private TopicMetadataResponse() {
         this(Collections.EMPTY_MAP);
+    }
+
+    public Map<TopicAndPartition, PartitionInfo> getTopicPartitions() {
+        return topicPartitions;
     }
 }
 
@@ -55,12 +54,12 @@ class ConsumeResponse {
         this.messages = messages;
     }
 
-    public Map<String, String> getMessages() {
-        return messages;
-    }
-
     private ConsumeResponse() {
         this(Collections.EMPTY_MAP); // for jackson.
+    }
+
+    public Map<String, String> getMessages() {
+        return messages;
     }
 }
 
@@ -110,12 +109,12 @@ class ProduceResponse {
         this.offset = offset;
     }
 
-    public long getOffset() {
-        return offset;
-    }
-
     public ProduceResponse() {
         this(-1);
+    }
+
+    public long getOffset() {
+        return offset;
     }
 }
 
@@ -159,13 +158,12 @@ class ProduceRequest {
 }
 
 public class SimpleKafkaApi {
-    Logger logger = LogManager.getLogger(SimpleKafkaApi.class);
-
-    private List<Broker> aliveBrokers = new ArrayList<>();
-    private final Map<TopicAndPartition, PartitionInfo> leaderCache = new ConcurrentHashMap<>();
     private static final int DefaultReplicaId = -1;
+    private final Map<TopicAndPartition, PartitionInfo> leaderCache = new ConcurrentHashMap<>();
     private final Config config;
     private final ReplicaManager replicaManager;
+    Logger logger = LogManager.getLogger(SimpleKafkaApi.class);
+    private List<Broker> aliveBrokers = new ArrayList<>();
 
     public SimpleKafkaApi(Config config, ReplicaManager replicaManager) {
         this.config = config;
@@ -316,12 +314,12 @@ public class SimpleKafkaApi {
         return aliveBrokers;
     }
 
-    public Map getLeaderCache() {
-        return leaderCache;
-    }
-
     public void setAliveBrokers(ArrayList arrayList) {
         this.aliveBrokers = arrayList;
+    }
+
+    public Map getLeaderCache() {
+        return leaderCache;
     }
 
     public void setLeaderCache(HashMap<TopicAndPartition, PartitionInfo> topicAndPartitionPartitionInfoHashMap) {

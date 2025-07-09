@@ -6,13 +6,14 @@ import com.dist.common.TestUtils;
 import com.dist.common.ZookeeperTestHarness;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-public class PartitionTest  {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class PartitionTest {
 
     @Test
     public void shouldAppendMessagesToFileAndReturnOffset() throws Exception {
@@ -86,9 +87,9 @@ public class PartitionTest  {
      * Test scenario:
      * 1. Append messages M0-M5 to the log
      * 2. Update replica offsets to simulate replication:
-     *    - Replica 1 (Leader): Offset 5
-     *    - Replica 2: Offset 3
-     *    - Replica 3: Offset 2
+     * - Replica 1 (Leader): Offset 5
+     * - Replica 2: Offset 3
+     * - Replica 3: Offset 2
      * 3. High watermark should be 2 (minimum of all replicas)
      * 4. Verify reads respect high watermark isolation
      */
@@ -109,7 +110,7 @@ public class PartitionTest  {
         List<Log.Message> messages = partition.read(1, -1, FetchIsolation.FetchHighWatermark);
 
         // Should only get messages up to high watermark (offset 2)
-        assertEquals("Should only read messages up to high watermark",3, messages.size());
+        assertEquals("Should only read messages up to high watermark", 3, messages.size());
 
         // Verify message contents
         for (int i = 0; i < messages.size(); i++) {
@@ -189,7 +190,7 @@ public class PartitionTest  {
         partition.read(1, replicaId, FetchIsolation.FetchLogEnd);
 
         // High watermark should be updated for this replica
-        assertEquals( "High watermark should be updated after replica read", 2, partition.highWatermark());
+        assertEquals("High watermark should be updated after replica read", 2, partition.highWatermark());
     }
 
 

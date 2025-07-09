@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ProducerConsumerTest extends ZookeeperTestHarness {
 
@@ -24,7 +24,7 @@ public class ProducerConsumerTest extends ZookeeperTestHarness {
         broker3.startup();
         int noOfBrokers = 3;
 
-        TestUtils.waitUntilTrue(()-> {
+        TestUtils.waitUntilTrue(() -> {
             return broker1.controller.getCurrentLiveBrokerIds().size() == 3;
         }, "Waiting for all brokers to be discovered by the controller");
 
@@ -45,10 +45,10 @@ public class ProducerConsumerTest extends ZookeeperTestHarness {
 
 
         long offset1 = simpleProducer.produce("topic1", "key1", "message1");
-        assertEquals("First offset should be 1", 1, offset1 );
+        assertEquals("First offset should be 1", 1, offset1);
 
         long offset2 = simpleProducer.produce("topic1", "key2", "message2");
-        assertEquals( "First offset on different partition should be 1", 1,
+        assertEquals("First offset on different partition should be 1", 1,
                 offset2);
 
         long offset3 = simpleProducer.produce("topic1", "key3", "message3");

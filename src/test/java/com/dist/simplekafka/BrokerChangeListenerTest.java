@@ -43,17 +43,16 @@ public class BrokerChangeListenerTest extends ZookeeperTestHarness {
     public void shouldRemoveBrokerInformationFromController() throws Exception {
 
         //Node1
-            var zookeeperClient1 = new ZookeeperClient(config);
-            zookeeperClient1.registerBroker(new Broker(0, "10.10.10.10", 8000));
-            controller = new ZkController(zookeeperClient1, config.getBrokerId(),
-                    socketServer);
-            controller.startup();
+        var zookeeperClient1 = new ZookeeperClient(config);
+        zookeeperClient1.registerBroker(new Broker(0, "10.10.10.10", 8000));
+        controller = new ZkController(zookeeperClient1, config.getBrokerId(),
+                socketServer);
+        controller.startup();
 
 
         //Node2
-            var zookeeperClient2 = new ZookeeperClient(config);
-            zookeeperClient2.registerBroker(new Broker(1, "10.10.10.11", 8001));
-
+        var zookeeperClient2 = new ZookeeperClient(config);
+        zookeeperClient2.registerBroker(new Broker(1, "10.10.10.11", 8001));
 
 
         TestUtils.waitUntilTrue(() -> controller.getLiveBrokers().size() == 2,

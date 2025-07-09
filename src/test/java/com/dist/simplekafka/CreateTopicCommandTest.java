@@ -1,17 +1,17 @@
 package com.dist.simplekafka;
 
-import java.util.*;
-
-import com.dist.common.Config;
 import com.dist.common.ZookeeperTestHarness;
-import org.I0Itec.zkclient.IZkChildListener;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import static junit.framework.Assert.assertEquals;
 
 
 public class CreateTopicCommandTest extends ZookeeperTestHarness {
-       @Test
+    @Test
     public void shouldCreatePersistentPathForTopicWithTopicPartitionAssignmentsInZookeeper() throws Exception {
 
         zookeeperClient.registerBroker(new Broker(0, "10.10.10.10", 8000));
