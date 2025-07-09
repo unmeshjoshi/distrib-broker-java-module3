@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6ab543-9179-4abf-a2e1-05bbd977a760" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/SimpleKafkaApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dist/simplekafka/ZkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dist/simplekafka/TopicChangeListenerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +27,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -55,6 +54,7 @@
     "Gradle.ZkControllerTest.shouldSendLeaderAndFollowerRequestsToAllLeaderAndFollowerBrokersForGivenTopicAndPartition.executor": "Run",
     "JavaMethodFindUsagesOptions.isSearchForTextOccurrences": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
@@ -62,12 +62,13 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/unmeshjoshi/work/distrib-broker-java-module3",
+    "last_opened_file_path": "/Users/sriharisridharan/Documents/GitHub/srihari-sridharan-tw/MADS/distrib-broker-java-module3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -213,8 +214,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
       </set>
     </attachedChunks>
   </component>
@@ -230,6 +231,7 @@
       <workItem from="1743575822672" duration="9584000" />
       <workItem from="1743667804124" duration="71000" />
       <workItem from="1743667925003" duration="460000" />
+      <workItem from="1752058876683" duration="8000" />
     </task>
     <servers />
   </component>
